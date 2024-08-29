@@ -1,0 +1,194 @@
+[gd_scene load_steps=13 format=4 uid="uid://cysh87p85kmkj"]
+
+[ext_resource type="PackedScene" uid="uid://fjftocha1jd1" path="res://debug/debug.tscn" id="1_0h5jv"]
+[ext_resource type="Script" path="res://game/game.gd" id="1_641h8"]
+[ext_resource type="Texture2D" uid="uid://h7261o7firb5" path="res://assets/tilemaps/Tilemap.png" id="3_x3ld0"]
+[ext_resource type="AudioStream" uid="uid://dwbjuq4hklwi6" path="res://assets/sounds/clear.wav" id="4_a2eg6"]
+[ext_resource type="AudioStream" uid="uid://d1w4ttd6ywtw4" path="res://assets/sounds/settle.wav" id="5_nvuwv"]
+[ext_resource type="AudioStream" uid="uid://citcw3api16ce" path="res://assets/sounds/next_level.wav" id="6_rkth1"]
+[ext_resource type="AudioStream" uid="uid://d3v2l7v0x8sx1" path="res://assets/music/tetrifection_full.wav" id="7_ku2kd"]
+[ext_resource type="AudioStream" uid="uid://bttdw5tw8eu2f" path="res://assets/music/tetrifection_alt.wav" id="8_0xhv0"]
+[ext_resource type="Script" path="res://game/pause.gd" id="9_51qoc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26jh2"]
+texture = ExtResource("3_x3ld0")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_v7lf2"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_26jh2")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_35y0r"]
+clip_count = 2
+clip_0/name = &"Full"
+clip_0/stream = ExtResource("7_ku2kd")
+clip_0/auto_advance = 0
+clip_1/name = &"Danger"
+clip_1/stream = ExtResource("8_0xhv0")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 2,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 2,
+"to_time": 0
+}
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_641h8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Debug" parent="." instance=ExtResource("1_0h5jv")]
+unique_name_in_owner = true
+
+[node name="TilesLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAD/////AAAIAAAAAAAKAP//AAAIAAAAAAD//xQAAAAIAAAAAAAKABQAAAAIAAAAAAAAAP//AAAIAAAAAAABAP//AAAIAAAAAAACAP//AAAIAAAAAAADAP//AAAIAAAAAAAEAP//AAAIAAAAAAAFAP//AAAIAAAAAAAGAP//AAAIAAAAAAAHAP//AAAIAAAAAAAIAP//AAAIAAAAAAAJAP//AAAIAAAAAAAKAAAAAAAIAAAAAAAKAAEAAAAIAAAAAAAKAAIAAAAIAAAAAAAKAAMAAAAIAAAAAAAKAAQAAAAIAAAAAAAKAAUAAAAIAAAAAAAKAAYAAAAIAAAAAAAKAAcAAAAIAAAAAAAKAAgAAAAIAAAAAAAKAAkAAAAIAAAAAAAKAAoAAAAIAAAAAAAKAAsAAAAIAAAAAAAKAAwAAAAIAAAAAAAKAA0AAAAIAAAAAAAKAA4AAAAIAAAAAAAKAA8AAAAIAAAAAAAKABAAAAAIAAAAAAAKABEAAAAIAAAAAAAKABIAAAAIAAAAAAAKABMAAAAIAAAAAAAJABQAAAAIAAAAAAAIABQAAAAIAAAAAAAHABQAAAAIAAAAAAAGABQAAAAIAAAAAAAFABQAAAAIAAAAAAAEABQAAAAIAAAAAAADABQAAAAIAAAAAAACABQAAAAIAAAAAAABABQAAAAIAAAAAAAAABQAAAAIAAAAAAD//wAAAAAIAAAAAAD//wEAAAAIAAAAAAD//wIAAAAIAAAAAAD//wMAAAAIAAAAAAD//wQAAAAIAAAAAAD//wUAAAAIAAAAAAD//wYAAAAIAAAAAAD//wcAAAAIAAAAAAD//wgAAAAIAAAAAAD//wkAAAAIAAAAAAD//woAAAAIAAAAAAD//wsAAAAIAAAAAAD//wwAAAAIAAAAAAD//w0AAAAIAAAAAAD//w4AAAAIAAAAAAD//w8AAAAIAAAAAAD//xAAAAAIAAAAAAD//xEAAAAIAAAAAAD//xIAAAAIAAAAAAD//xMAAAAIAAAAAAAMAP//AAAIAAAAAAAMAAAAAAAIAAAAAAAMAAEAAAAIAAAAAAAMAAIAAAAIAAAAAAAMAAMAAAAIAAAAAAARAP//AAAIAAAAAAAQAP//AAAIAAAAAAAPAP//AAAIAAAAAAAOAP//AAAIAAAAAAANAP//AAAIAAAAAAAMAAQAAAAIAAAAAAASAP//AAAIAAAAAAAMAAUAAAAIAAAAAAATAP//AAAIAAAAAAATAAYAAAAIAAAAAAASAAYAAAAIAAAAAAARAAYAAAAIAAAAAAAQAAYAAAAIAAAAAAAPAAYAAAAIAAAAAAAOAAYAAAAIAAAAAAANAAYAAAAIAAAAAAAMAAYAAAAIAAAAAAAUAP//AAAIAAAAAAAUAAAAAAAIAAAAAAAUAAEAAAAIAAAAAAAUAAIAAAAIAAAAAAAUAAMAAAAIAAAAAAAUAAQAAAAIAAAAAAAUAAUAAAAIAAAAAAAUAAYAAAAIAAAAAAAMABQAAAAIAAAAAAANABQAAAAIAAAAAAAOABQAAAAIAAAAAAAPABQAAAAIAAAAAAAQABQAAAAIAAAAAAARABQAAAAIAAAAAAASABQAAAAIAAAAAAATABQAAAAIAAAAAAAUABQAAAAIAAAAAAAUABMAAAAIAAAAAAAUABIAAAAIAAAAAAAUABEAAAAIAAAAAAAUABAAAAAIAAAAAAAMABAAAAAIAAAAAAAMABEAAAAIAAAAAAAMABIAAAAIAAAAAAAMABMAAAAIAAAAAAAUAA8AAAAIAAAAAAATAA8AAAAIAAAAAAASAA8AAAAIAAAAAAARAA8AAAAIAAAAAAAQAA8AAAAIAAAAAAAPAA8AAAAIAAAAAAAOAA8AAAAIAAAAAAANAA8AAAAIAAAAAAAMAA8AAAAIAAAAAAA=")
+tile_set = SubResource("TileSet_v7lf2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 640)
+zoom = Vector2(0.46, 0.46)
+
+[node name="TimerDrop" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioLineClear" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_a2eg6")
+
+[node name="AudioSettle" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_nvuwv")
+
+[node name="AudioLevelUp" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_rkth1")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamInteractive_35y0r")
+autoplay = true
+
+[node name="ScorePanel" type="Panel" parent="."]
+offset_left = 831.0
+offset_top = 1023.0
+offset_right = 1281.0
+offset_bottom = 1281.0
+
+[node name="ScoreLabel" type="Label" parent="ScorePanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 449.0
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 72
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreData" type="Label" parent="ScorePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 125.0
+offset_right = 449.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PausePanel" type="Panel" parent="."]
+process_mode = 3
+visible = false
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 641.0
+offset_bottom = 1281.0
+script = ExtResource("9_51qoc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PauseLabel" type="Label" parent="PausePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 641.0
+offset_bottom = 1281.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="GameOverPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="GameOverPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="GameOverPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "NEW GAME"
+
+[node name="Control3" type="Control" parent="GameOverPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="GameOverPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "QUIT"
+
+[connection signal="timeout" from="TimerDrop" to="." method="_on_timer_drop_timeout"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,3 +1,58 @@
-[gd_scene format=3 uid="uid://fjftocha1jd1"]
+[gd_scene load_steps=2 format=3 uid="uid://fjftocha1jd1"]
+
+[ext_resource type="Script" path="res://debug/debug.gd" id="1_fnukf"]
 
 [node name="Debug" type="CanvasLayer"]
+script = ExtResource("1_fnukf")
+
+[node name="DebugContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonClearBoard" type="Button" parent="DebugContainer"]
+layout_mode = 2
+text = "Clear Board"
+
+[node name="ButtonClearLast" type="Button" parent="DebugContainer"]
+layout_mode = 2
+text = "Clear Last Line"
+
+[node name="ButtonNextI" type="Button" parent="DebugContainer"]
+layout_mode = 2
+text = "Next Piece I"
+
+[node name="ButtonNextO" type="Button" parent="DebugContainer"]
+layout_mode = 2
+text = "Next Piece O"
+
+[node name="ButtonNextLevel" type="Button" parent="DebugContainer"]
+layout_mode = 2
+text = "Next Level"
+
+[node name="ActPos" type="Label" parent="DebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Act Pos
+"
+
+[node name="PieceGrid" type="Label" parent="DebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Piece Grid"
+
+[node name="DownCheck" type="Label" parent="DebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Down Check"
+
+[node name="LeftCheck" type="Label" parent="DebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Left Check"
+
+[node name="RightCheck" type="Label" parent="DebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Right Check"
+
+[connection signal="pressed" from="DebugContainer/ButtonClearLast" to="." method="_on_button_clear_last_pressed"]
